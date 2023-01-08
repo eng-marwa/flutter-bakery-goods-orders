@@ -35,7 +35,7 @@ class LoginView extends StatelessWidget {
         listener: (context, state) {
           final formStatus = state.formStatus;
           if (formStatus is SubmissionFailed) {
-            ShowSnackBar(context, formStatus.failureMessage);
+          ShowSnackBar(context, formStatus.failureMessage);
           }
         },
         child: Form(

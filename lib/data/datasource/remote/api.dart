@@ -20,8 +20,8 @@ class ApiServiceImp extends ApiServices {
 
   @override
   Future<Either<Failure, User>> login(String email, String password) async {
-    String url = 'login';
-    Response response = await _dio.post(url);
+    String url = 'auth/login';
+    Response response = await _dio.post(url,data: {"email":email,"password":password});
     if (response.statusCode == 200) {
       final authResponse = AuthResponse.fromJson(response.data);
       UserData? userData = authResponse.user;
@@ -34,7 +34,7 @@ class ApiServiceImp extends ApiServices {
 
   @override
   Future<Either<Failure, User>> register(String email, String password) async {
-    String url = 'register';
+    String url = 'auth/register';
     Response response = await _dio.post(url);
     if (response.statusCode == 200) {
       final authResponse = AuthResponse.fromJson(response.data);

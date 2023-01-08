@@ -4,18 +4,18 @@ import 'package:hnflutter_challenge/domain/entity/user.dart';
 import 'package:hnflutter_challenge/presentation/auth/form_submission_status.dart';
 import 'package:hnflutter_challenge/utils/constants/constants.dart';
 
-part 'login_state.freezed.dart';
+part 'register_state.freezed.dart';
 
 @freezed
-class LoginState with _$LoginState {
-  const LoginState._();
+class RegisterState with _$RegisterState {
+  const RegisterState._();
   bool get isValidEmail => EmailValidator.validate(email);
   bool get isValidPassword => password.length >=6 && password.length<=12;
 
-  const factory LoginState(
+  const factory RegisterState(
           {@Default(empty) String email,
           @Default(empty) String password, User? user,
           @Default(empty) String message,
           required FormSubmissionStatus formStatus}) =
-      _LoginStatus;
+      _RegisterStatus;
 }
