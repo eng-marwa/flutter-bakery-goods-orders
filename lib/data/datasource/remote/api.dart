@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hnflutter_challenge/app/failure.dart';
 import 'package:hnflutter_challenge/data/model/auth.dart';
+import 'package:hnflutter_challenge/domain/entity/product.dart';
 import 'package:hnflutter_challenge/domain/entity/user.dart';
 import 'package:hnflutter_challenge/utils/mapper/mapper.dart';
 
@@ -11,6 +12,8 @@ abstract class ApiServices {
   Future<Either<Failure, User>> register(String email, String password);
 
   Future<Either<Failure, String>> logout();
+
+  Future<Either<Failure, Product>> all();
 }
 
 class ApiServiceImp extends ApiServices {
@@ -49,6 +52,19 @@ class ApiServiceImp extends ApiServices {
   @override
   Future<Either<Failure, String>> logout() async {
     String url = 'logout';
+    Response response = await _dio.post(url);
+    if (response.statusCode == 200) {
+      final authResponse = AuthResponse.fromJson(response.data);
+      return Right(authResponse.message!);
+    } else {
+      return Left(Failure(
+          code: response.statusCode!, message: response.statusMessage!));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> all() async {
+    String url = 'bakery/all';
     Response response = await _dio.post(url);
     if (response.statusCode == 200) {
       final authResponse = AuthResponse.fromJson(response.data);

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hnflutter_challenge/data/datasource/remote/api.dart';
+import 'package:hnflutter_challenge/domain/repository/bakery_repository.dart';
 import 'package:hnflutter_challenge/domain/usecases/login_use_case.dart';
 import 'package:hnflutter_challenge/domain/usecases/logout_use_case.dart';
 import 'package:hnflutter_challenge/domain/usecases/register_use_case.dart';
@@ -9,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/datasource/local/preferences.dart';
 import '../data/datasource/remote/dio_factory.dart';
 import '../data/repository/auth_remote_repository.dart';
+import '../data/repository/bakery_remote_repository.dart';
 import '../domain/repository/auth_repository.dart';
 import '../presentation/auth/login/login_viewmodel/login_bloc.dart';
 
@@ -37,5 +39,13 @@ Future<void> configureDependencies() async {
 
 
   instance.registerFactory<LoginBloc>(() => LoginBloc(instance()));
+  //-------------------------------------------
+
+  instance.registerFactory<BasBakeryRemoteRepository>(
+          () => BakeryRemoteRepositoryImp(instance()));
+
+  instance.registerFactory<BakeryRepository>(
+          () => BakeryRepositoryImp(instance()));
+
 
 }

@@ -40,8 +40,8 @@ class LoginView extends StatelessWidget {
           if (formStatus is SubmissionFailed) {
             ShowSnackBar(context, formStatus.failureMessage);
           } else if (formStatus is SubmissionSuccess) {
-            print('${state.email}  ${state.user}');
-            Navigator.pushNamed(context, Routes.homeRoute, arguments: state.user?.name);
+            Navigator.pushNamed(context, Routes.homeRoute,
+                arguments: state.user?.email);
           }
         },
         child: Form(
@@ -52,7 +52,9 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(20), child: WelcomeText('Member'),),
+                  padding: EdgeInsets.all(20),
+                  child: WelcomeText('Member'),
+                ),
                 EmailField(),
                 PasswordField(),
                 LoginButton(),
@@ -67,13 +69,13 @@ class LoginView extends StatelessWidget {
       return state.formStatus is FormSubmitting
           ? CircularProgressIndicator()
           : ElevatedButton(
-        onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            context.read<LoginBloc>().add(const LoginSubmitted());
-          }
-        },
-        child: Text('Login'),
-      );
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  context.read<LoginBloc>().add(const LoginSubmitted());
+                }
+              },
+              child: Text('Login'),
+            );
     });
   }
 }

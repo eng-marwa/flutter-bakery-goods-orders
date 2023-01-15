@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: Routes.getRoute,
-      initialRoute: Routes.splashRoute,
+      initialRoute: Routes.homeRoute,
     );
   }
 }

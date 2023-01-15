@@ -10,6 +10,7 @@ import '../form_submission_status.dart';
 import 'register_viewmodel/register_bloc.dart';
 import 'register_viewmodel/register_event.dart';
 import 'register_viewmodel/register_state.dart';
+import '../../../resources/route_manager.dart';
 
 class RegisterView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -37,7 +38,8 @@ class RegisterView extends StatelessWidget {
           if (formStatus is SubmissionFailed) {
             ShowSnackBar(context, formStatus.failureMessage);
           }else if(formStatus is SubmissionSuccess){
-            print(state.user?.name);
+            Navigator.pushNamed(context, Routes.homeRoute,
+                arguments: state.user?.email);
           }
         },
         child: Form(

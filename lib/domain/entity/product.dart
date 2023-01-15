@@ -1,21 +1,21 @@
+import '../../data/model/Bakery.dart';
+
 class Product {
   Product({
     required this.id,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.availableQuantity,
+    required this.name,
+    required this.ingredients,
+    required this.steps,
+    required this.servings,
+    required this.image,
   });
 
-  final String id;
-  final String imageUrl;
-  final String title;
-  final double price;
-  final int availableQuantity;
+  int? id;
+  String? name;
+  List<Ingredients>? ingredients;
+  List<Steps>? steps;
+  int? servings;
+  String? image;
 
-  // serialization code
-  // factory Product.fromJson(Map<String, dynamic> json) {
-  // }
-  //
-  // Map<String, dynamic> toJson() =>
+
 }

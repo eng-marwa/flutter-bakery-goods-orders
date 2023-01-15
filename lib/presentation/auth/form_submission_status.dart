@@ -1,4 +1,3 @@
-import 'package:hnflutter_challenge/app/failure.dart';
 
 abstract class FormSubmissionStatus{
   const FormSubmissionStatus();
