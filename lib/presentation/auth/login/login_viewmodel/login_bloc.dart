@@ -21,9 +21,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(state.copyWith(formStatus: FormSubmitting()));
     try {
       final result = await _loginUseCase.execute(AuthRequest('marwa@gmail.com', '123456'));
-      emit(state.copyWith(formStatus: SubmissionSuccess()));
       result.fold(
-          (l) => emit(LoginState(formStatus: SubmissionFailed(l.message))),
+          (l) => emit(LoginState(formStatus: SubmissionFailed(l.message)))
+          ,
           (r) => emit(LoginState(user: r, formStatus: SubmissionSuccess())));
     } on Exception catch (e) {
       emit(state.copyWith(formStatus: SubmissionFailed(e.toString())));

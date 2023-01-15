@@ -36,6 +36,8 @@ class RegisterView extends StatelessWidget {
           final formStatus = state.formStatus;
           if (formStatus is SubmissionFailed) {
             ShowSnackBar(context, formStatus.failureMessage);
+          }else if(formStatus is SubmissionSuccess){
+            print(state.user?.name);
           }
         },
         child: Form(

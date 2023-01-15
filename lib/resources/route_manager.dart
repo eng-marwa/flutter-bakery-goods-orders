@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../presentation/auth/login/login_view.dart';
+import '../presentation/home/home_view.dart';
 import '../presentation/auth/register/register_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
   static const String loginRoute = "/login";
   static const String registerRoute = "/registe";
-  static const String mainRoute = "/main";
+  static const String homeRoute = "/home";
   static const String storeDetailsRoute = "/storeDetails";
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -18,8 +19,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) =>  LoginView());
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) =>  RegisterView());
-      // case Routes.mainRoute:
-      //   return MaterialPageRoute(builder: (_) => const MainView());
+      case Routes.homeRoute:
+        return MaterialPageRoute(builder: (_) => const HomeView());
       // case Routes.storeDetailsRoute:
       //   return MaterialPageRoute(builder: (_) => const StoreDetailsView());
       default:

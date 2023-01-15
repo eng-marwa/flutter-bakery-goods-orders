@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hnflutter_challenge/presentation/widgets/welcome_text.dart';
+import '../../../resources/route_manager.dart';
 import '../../widgets/email_field.dart';
 import '../../widgets/passwordfield.dart';
 import '../../widgets/show_snackbar.dart';
@@ -14,6 +15,7 @@ import 'login_viewmodel/login_state.dart';
 class LoginView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final instance = GetIt.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +36,12 @@ class LoginView extends StatelessWidget {
     return BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           final formStatus = state.formStatus;
+          print(formStatus is SubmissionFailed);
           if (formStatus is SubmissionFailed) {
-          ShowSnackBar(context, formStatus.failureMessage);
+            ShowSnackBar(context, formStatus.failureMessage);
+          } else if (formStatus is SubmissionSuccess) {
+            print('${state.email}  ${state.user}');
+            Navigator.pushNamed(context, Routes.homeRoute, arguments: state.user?.name);
           }
         },
         child: Form(
@@ -45,7 +51,8 @@ class LoginView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(padding: EdgeInsets.all(20),child: WelcomeText('Member'),),
+                Padding(
+                  padding: EdgeInsets.all(20), child: WelcomeText('Member'),),
                 EmailField(),
                 PasswordField(),
                 LoginButton(),
@@ -60,13 +67,13 @@ class LoginView extends StatelessWidget {
       return state.formStatus is FormSubmitting
           ? CircularProgressIndicator()
           : ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  context.read<LoginBloc>().add(const LoginSubmitted());
-                }
-              },
-              child: Text('Login'),
-            );
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            context.read<LoginBloc>().add(const LoginSubmitted());
+          }
+        },
+        child: Text('Login'),
+      );
     });
   }
 }

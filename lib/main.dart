@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hnflutter_challenge/di/module.dart';
-import 'package:hnflutter_challenge/presentation/auth/login/login_view.dart';
+import 'package:hnflutter_challenge/resources/route_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginView(),
+      onGenerateRoute: Routes.getRoute,
+      initialRoute: Routes.splashRoute,
     );
   }
 }
