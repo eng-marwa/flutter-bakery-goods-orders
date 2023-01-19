@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hnflutter_challenge/app/failure.dart';
+import 'package:hnflutter_challenge/data/model/Bakery.dart';
 import 'package:hnflutter_challenge/data/model/auth.dart';
 import 'package:hnflutter_challenge/domain/entity/product.dart';
 import 'package:hnflutter_challenge/domain/entity/user.dart';
@@ -13,7 +16,7 @@ abstract class ApiServices {
 
   Future<Either<Failure, String>> logout();
 
-  Future<Either<Failure, Product>> all();
+  Future<Either<Failure, List<Product>>> all();
 }
 
 class ApiServiceImp extends ApiServices {
@@ -63,12 +66,13 @@ class ApiServiceImp extends ApiServices {
   }
 
   @override
-  Future<Either<Failure, String>> all() async {
+  Future<Either<Failure, List<Product>>> all() async {
     String url = 'bakery/all';
-    Response response = await _dio.post(url);
+    Response response = await _dio.get(url);
     if (response.statusCode == 200) {
-      final authResponse = AuthResponse.fromJson(response.data);
-      return Right(authResponse.message!);
+      List<BakeryResponse>? list =  (json.decode(response.data) as List).map((i) => BakeryResponse.fromJson(i)).toList();
+      List<Product> products = list.map((element)=> element.toDomain()).toList();
+      return Right(products);
     } else {
       return Left(Failure(
           code: response.statusCode!, message: response.statusMessage!));

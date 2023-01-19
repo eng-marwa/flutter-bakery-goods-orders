@@ -7,11 +7,11 @@ import '../view_product_status.dart';
 part 'home_state.freezed.dart';
 
 @freezed
-class ViewProductState with _$ViewProductState {
-  const ViewProductState._();
+class ViewProductsState with _$ViewProductsState {
+  const ViewProductsState._();
 
-  const factory ViewProductState(
+  const factory ViewProductsState(
       {@Default(empty) String message,
       List<Product>? products,
-      required ViewProductStatus viewProductStatus}) = _ViewProductState;
+      required ViewProductsStatus viewProductStatus}) = _ViewProductsState;
 }

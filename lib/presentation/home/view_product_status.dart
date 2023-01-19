@@ -1,10 +1,10 @@
-abstract class ViewProductStatus{
-  const ViewProductStatus();
+abstract class ViewProductsStatus{
+  const ViewProductsStatus();
 }
 
-class Loading extends ViewProductStatus{}
-class Success extends ViewProductStatus{}
-class Failed extends ViewProductStatus{
+class Loading extends ViewProductsStatus{}
+class Success extends ViewProductsStatus{}
+class Failed extends ViewProductsStatus{
   final String failureMessage;
   Failed(this.failureMessage);
 }

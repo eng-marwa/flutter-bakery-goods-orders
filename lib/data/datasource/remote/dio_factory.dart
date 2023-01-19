@@ -20,6 +20,7 @@ class DioFactory {
       requestHeader: true,
       requestBody: true,
       responseHeader: true,
+      canShowLog: true
     ));
 
     return dio;

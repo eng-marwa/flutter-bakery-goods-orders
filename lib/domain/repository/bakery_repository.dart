@@ -9,14 +9,14 @@ abstract class BakeryRepository {
   BasBakeryRemoteRepository _baseBakeryRemoteRepository;
   BakeryRepository(this._baseBakeryRemoteRepository);
 
-  Future<Either<Failure, Product>> all();
+  Future<Either<Failure, List<Product>>> all();
 
 }
 
 class BakeryRepositoryImp extends BakeryRepository {
   BakeryRepositoryImp(super._baseBakeryRemoteRepository);
   @override
-  Future<Either<Failure, Product>> all() {
+  Future<Either<Failure, List<Product>>> all() {
     return _baseBakeryRemoteRepository.all();
   }
 

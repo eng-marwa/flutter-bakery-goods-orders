@@ -20,7 +20,7 @@ class Routes {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) =>  RegisterView());
       case Routes.homeRoute:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (_) =>  HomeView());
       // case Routes.storeDetailsRoute:
       //   return MaterialPageRoute(builder: (_) => const StoreDetailsView());
       default:

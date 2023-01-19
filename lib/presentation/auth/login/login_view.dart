@@ -20,7 +20,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => LoginBloc(instance()),
+        create: (context) => instance<LoginBloc>(),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
@@ -36,7 +36,6 @@ class LoginView extends StatelessWidget {
     return BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           final formStatus = state.formStatus;
-          print(formStatus is SubmissionFailed);
           if (formStatus is SubmissionFailed) {
             ShowSnackBar(context, formStatus.failureMessage);
           } else if (formStatus is SubmissionSuccess) {
