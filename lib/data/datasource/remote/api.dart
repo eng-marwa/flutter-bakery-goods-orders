@@ -124,7 +124,7 @@ class ApiServiceImp extends ApiServices {
   }
 
   @override
-  Future<Either<Failure,bool>> cancelOrder(orderId) {
+  Future<Either<Failure,bool>> cancelOrder(orderId) async{
     if (responseStatus) {
       return Right(true);
     } else {
@@ -133,7 +133,7 @@ class ApiServiceImp extends ApiServices {
   }
 
   @override
-  Future<Either<Failure,bool>>makeOrder(order.Order order) {
+  Future<Either<Failure,bool>>makeOrder(order.Order order) async{
     if (responseStatus) {
       return Right(true);
     } else {
@@ -142,7 +142,7 @@ class ApiServiceImp extends ApiServices {
   }
 
   @override
-  Future<Either<Failure,bool>> rateOrder(int? orderId, int? rate) {
+  Future<Either<Failure,bool>> rateOrder(int? orderId, int? rate) async{
     if (responseStatus) {
       return Right(true);
     } else {
@@ -151,7 +151,7 @@ class ApiServiceImp extends ApiServices {
   }
 
   @override
-  Future<Either<Failure, List<order.Order>>> viewMemberOrders() {
+  Future<Either<Failure, List<order.Order>>> viewMemberOrders() async{
     if (responseStatus) {
       List<order.Order> orders = getOrderList();
       return Right(order.Order);
