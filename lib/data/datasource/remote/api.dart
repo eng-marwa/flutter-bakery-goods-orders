@@ -154,7 +154,7 @@ class ApiServiceImp extends ApiServices {
   Future<Either<Failure, List<order.Order>>> viewMemberOrders() async{
     if (responseStatus) {
       List<order.Order> orders = getOrderList();
-      return Right(order.Order);
+      return Right(orders);
     } else {
       return Left(Failure(code: 422, message: 'error message'));
     }
