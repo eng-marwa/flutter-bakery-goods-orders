@@ -1,12 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:hnflutter_challenge/presentation/home/view_product_status.dart';
-
-import '../../../domain/usecases/all_bakery_use_cases.dart';
 import 'home_event.dart';
 import 'home_state.dart';
 
 class ViewProductsBloc extends Bloc<ViewProductsEvent, ViewProductsState> {
-  AllBakeryUseCase _allBakeryUseCase;
 
   ViewProductsBloc(this._allBakeryUseCase)
       : super(ViewProductsState(viewProductStatus: Loading())) {

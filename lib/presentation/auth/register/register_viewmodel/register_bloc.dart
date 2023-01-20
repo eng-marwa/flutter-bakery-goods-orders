@@ -1,10 +1,10 @@
-import 'package:hnflutter_challenge/data/model/auth.dart';
+import 'package:hnflutter_challenge/data/model/auth_model.dart';
 import 'package:hnflutter_challenge/presentation/auth/form_submission_status.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hnflutter_challenge/presentation/auth/register/register_viewmodel/register_event.dart';
 import 'package:hnflutter_challenge/presentation/auth/register/register_viewmodel/register_state.dart';
 
-import '../../../../domain/usecases/Register_use_case.dart';
+import '../../../../domain/usecases/auth_use_cases/register_use_case.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterUseCase _RegisterUseCase;

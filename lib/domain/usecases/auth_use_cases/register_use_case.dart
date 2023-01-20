@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 
-import '../../app/failure.dart';
-import '../../data/model/auth.dart';
-import '../entity/user.dart';
-import '../repository/auth_repository.dart';
-import 'base_use_case.dart';
+import '../../../app/failure.dart';
+import '../../../data/model/auth_model.dart';
+import '../../entity/user.dart';
+import '../../repository/auth_repository.dart';
+import '../base_use_case.dart';
 
 class RegisterUseCase implements BaseUseCase<AuthRequest, User> {
   final AuthRepository _authRepository;

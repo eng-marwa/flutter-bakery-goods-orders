@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hnflutter_challenge/domain/entity/product.dart';
+import 'package:hnflutter_challenge/presentation/cart/cart_viewmodel/cart_event.dart';
 import 'package:hnflutter_challenge/presentation/home/home_viewmodel/home_bloc.dart';
 import 'package:hnflutter_challenge/presentation/home/home_viewmodel/home_event.dart';
 import 'package:hnflutter_challenge/presentation/home/home_viewmodel/home_state.dart';
@@ -21,7 +22,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
         body:MultiBlocProvider(providers: [
           BlocProvider<ViewProductsBloc>(create: (context) => instance<ViewProductsBloc>()..add(FetchProducts())),
-          BlocProvider<CartBloc>(create: (context) => instance<ViewProductsBloc>()..add(FetchProducts())),
+         // BlocProvider<CartBloc>(create: (context) => instance<CartBloc>()..add(AddItemToCartEvent(itemId))),
         ],
 
       child: SafeArea(

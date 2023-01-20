@@ -1,10 +1,11 @@
-import 'package:hnflutter_challenge/data/model/auth.dart';
+import 'package:hnflutter_challenge/data/model/auth_model.dart';
 import 'package:hnflutter_challenge/presentation/auth/form_submission_status.dart';
 import 'package:hnflutter_challenge/presentation/auth/login/login_viewmodel/login_event.dart';
 import 'package:hnflutter_challenge/presentation/auth/login/login_viewmodel/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../domain/usecases/login_use_case.dart';
+import '../../../../domain/usecases/auth_use_cases/login_use_case.dart';
+
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginUseCase _loginUseCase;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hnflutter_challenge/di/module.dart';
+import 'package:hnflutter_challenge/domain/entity/item.dart';
 import 'package:hnflutter_challenge/resources/route_manager.dart';
 
 Future<void> main() async {
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

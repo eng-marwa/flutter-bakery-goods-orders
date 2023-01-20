@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:hnflutter_challenge/app/failure.dart';
 
-import '../repository/auth_repository.dart';
-import 'base_use_case.dart';
+import '../../repository/auth_repository.dart';
+import '../base_use_case.dart';
 
 class LogoutUseCase implements BaseUseCase<void, void> {
   final AuthRepository _authRepository;

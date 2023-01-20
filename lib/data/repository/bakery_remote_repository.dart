@@ -7,14 +7,11 @@ import '../datasource/remote/api.dart';
 abstract class BasBakeryRemoteRepository {
   ApiServices apiServices;
   BasBakeryRemoteRepository(this.apiServices);
-  Future<Either<Failure, List<Product>>> all();
+
 
 }
 class BakeryRemoteRepositoryImp extends BasBakeryRemoteRepository {
   BakeryRemoteRepositoryImp(super.apiServices);
 
-  @override
-  Future<Either<Failure, List<Product>>> all() {
-    return apiServices.all();
-  }
+
 }
