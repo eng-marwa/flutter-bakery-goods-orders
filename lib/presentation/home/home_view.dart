@@ -21,6 +21,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? email = ModalRoute.of(context)!.settings.arguments as String?;
+    print(email);
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
