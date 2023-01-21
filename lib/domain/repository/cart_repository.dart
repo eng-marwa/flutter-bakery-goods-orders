@@ -38,7 +38,7 @@ class CartRepositoryImp extends CartRepository {
 
   @override
   Either<Failure, int> removeExistingItem(int itemId) {
-    return removeExistingItem(itemId);
+    return _baseCartLocalRepository.removeExistingItem(itemId);
   }
 
   @override

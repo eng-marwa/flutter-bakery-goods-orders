@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:hnflutter_challenge/domain/entity/item.dart';
 
 import '../../../utils/constants/constants.dart';
-import '../CartStatus.dart';
+import 'CartStatus.dart';
 part 'cart_state.freezed.dart';
 
 @freezed

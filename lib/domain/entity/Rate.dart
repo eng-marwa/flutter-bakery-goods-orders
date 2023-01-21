@@ -1,6 +1,6 @@
 class Rate {
   int? orderId;
-  int? rate;
+  double? rate;
 
    Rate({
     required this.orderId,

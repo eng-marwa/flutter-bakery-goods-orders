@@ -15,33 +15,33 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ViewProductsState {
+mixin _$ViewBakeriesState {
   String get message => throw _privateConstructorUsedError;
-  List<Product>? get products => throw _privateConstructorUsedError;
-  ViewProductsStatus get viewProductStatus =>
+  List<Bakery>? get bakeries => throw _privateConstructorUsedError;
+  ViewBakeriesStatus get viewBakeriesStatus =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ViewProductsStateCopyWith<ViewProductsState> get copyWith =>
+  $ViewBakeriesStateCopyWith<ViewBakeriesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ViewProductsStateCopyWith<$Res> {
-  factory $ViewProductsStateCopyWith(
-          ViewProductsState value, $Res Function(ViewProductsState) then) =
-      _$ViewProductsStateCopyWithImpl<$Res, ViewProductsState>;
+abstract class $ViewBakeriesStateCopyWith<$Res> {
+  factory $ViewBakeriesStateCopyWith(
+          ViewBakeriesState value, $Res Function(ViewBakeriesState) then) =
+      _$ViewBakeriesStateCopyWithImpl<$Res, ViewBakeriesState>;
   @useResult
   $Res call(
       {String message,
-      List<Product>? products,
-      ViewProductsStatus viewProductStatus});
+      List<Bakery>? bakeries,
+      ViewBakeriesStatus viewBakeriesStatus});
 }
 
 /// @nodoc
-class _$ViewProductsStateCopyWithImpl<$Res, $Val extends ViewProductsState>
-    implements $ViewProductsStateCopyWith<$Res> {
-  _$ViewProductsStateCopyWithImpl(this._value, this._then);
+class _$ViewBakeriesStateCopyWithImpl<$Res, $Val extends ViewBakeriesState>
+    implements $ViewBakeriesStateCopyWith<$Res> {
+  _$ViewBakeriesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -52,142 +52,142 @@ class _$ViewProductsStateCopyWithImpl<$Res, $Val extends ViewProductsState>
   @override
   $Res call({
     Object? message = null,
-    Object? products = freezed,
-    Object? viewProductStatus = null,
+    Object? bakeries = freezed,
+    Object? viewBakeriesStatus = null,
   }) {
     return _then(_value.copyWith(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
-      viewProductStatus: null == viewProductStatus
-          ? _value.viewProductStatus
-          : viewProductStatus // ignore: cast_nullable_to_non_nullable
-              as ViewProductsStatus,
+      bakeries: freezed == bakeries
+          ? _value.bakeries
+          : bakeries // ignore: cast_nullable_to_non_nullable
+              as List<Bakery>?,
+      viewBakeriesStatus: null == viewBakeriesStatus
+          ? _value.viewBakeriesStatus
+          : viewBakeriesStatus // ignore: cast_nullable_to_non_nullable
+              as ViewBakeriesStatus,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ViewProductsStateCopyWith<$Res>
-    implements $ViewProductsStateCopyWith<$Res> {
-  factory _$$_ViewProductsStateCopyWith(_$_ViewProductsState value,
-          $Res Function(_$_ViewProductsState) then) =
-      __$$_ViewProductsStateCopyWithImpl<$Res>;
+abstract class _$$_ViewBakeriesStateCopyWith<$Res>
+    implements $ViewBakeriesStateCopyWith<$Res> {
+  factory _$$_ViewBakeriesStateCopyWith(_$_ViewBakeriesState value,
+          $Res Function(_$_ViewBakeriesState) then) =
+      __$$_ViewBakeriesStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String message,
-      List<Product>? products,
-      ViewProductsStatus viewProductStatus});
+      List<Bakery>? bakeries,
+      ViewBakeriesStatus viewBakeriesStatus});
 }
 
 /// @nodoc
-class __$$_ViewProductsStateCopyWithImpl<$Res>
-    extends _$ViewProductsStateCopyWithImpl<$Res, _$_ViewProductsState>
-    implements _$$_ViewProductsStateCopyWith<$Res> {
-  __$$_ViewProductsStateCopyWithImpl(
-      _$_ViewProductsState _value, $Res Function(_$_ViewProductsState) _then)
+class __$$_ViewBakeriesStateCopyWithImpl<$Res>
+    extends _$ViewBakeriesStateCopyWithImpl<$Res, _$_ViewBakeriesState>
+    implements _$$_ViewBakeriesStateCopyWith<$Res> {
+  __$$_ViewBakeriesStateCopyWithImpl(
+      _$_ViewBakeriesState _value, $Res Function(_$_ViewBakeriesState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = null,
-    Object? products = freezed,
-    Object? viewProductStatus = null,
+    Object? bakeries = freezed,
+    Object? viewBakeriesStatus = null,
   }) {
-    return _then(_$_ViewProductsState(
+    return _then(_$_ViewBakeriesState(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      products: freezed == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
-      viewProductStatus: null == viewProductStatus
-          ? _value.viewProductStatus
-          : viewProductStatus // ignore: cast_nullable_to_non_nullable
-              as ViewProductsStatus,
+      bakeries: freezed == bakeries
+          ? _value._bakeries
+          : bakeries // ignore: cast_nullable_to_non_nullable
+              as List<Bakery>?,
+      viewBakeriesStatus: null == viewBakeriesStatus
+          ? _value.viewBakeriesStatus
+          : viewBakeriesStatus // ignore: cast_nullable_to_non_nullable
+              as ViewBakeriesStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ViewProductsState extends _ViewProductsState {
-  const _$_ViewProductsState(
+class _$_ViewBakeriesState extends _ViewBakeriesState {
+  const _$_ViewBakeriesState(
       {this.message = empty,
-      final List<Product>? products,
-      required this.viewProductStatus})
-      : _products = products,
+      final List<Bakery>? bakeries,
+      required this.viewBakeriesStatus})
+      : _bakeries = bakeries,
         super._();
 
   @override
   @JsonKey()
   final String message;
-  final List<Product>? _products;
+  final List<Bakery>? _bakeries;
   @override
-  List<Product>? get products {
-    final value = _products;
+  List<Bakery>? get bakeries {
+    final value = _bakeries;
     if (value == null) return null;
-    if (_products is EqualUnmodifiableListView) return _products;
+    if (_bakeries is EqualUnmodifiableListView) return _bakeries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
-  final ViewProductsStatus viewProductStatus;
+  final ViewBakeriesStatus viewBakeriesStatus;
 
   @override
   String toString() {
-    return 'ViewProductsState(message: $message, products: $products, viewProductStatus: $viewProductStatus)';
+    return 'ViewBakeriesState(message: $message, bakeries: $bakeries, viewBakeriesStatus: $viewBakeriesStatus)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ViewProductsState &&
+            other is _$_ViewBakeriesState &&
             (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
-            (identical(other.viewProductStatus, viewProductStatus) ||
-                other.viewProductStatus == viewProductStatus));
+            const DeepCollectionEquality().equals(other._bakeries, _bakeries) &&
+            (identical(other.viewBakeriesStatus, viewBakeriesStatus) ||
+                other.viewBakeriesStatus == viewBakeriesStatus));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message,
-      const DeepCollectionEquality().hash(_products), viewProductStatus);
+      const DeepCollectionEquality().hash(_bakeries), viewBakeriesStatus);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ViewProductsStateCopyWith<_$_ViewProductsState> get copyWith =>
-      __$$_ViewProductsStateCopyWithImpl<_$_ViewProductsState>(
+  _$$_ViewBakeriesStateCopyWith<_$_ViewBakeriesState> get copyWith =>
+      __$$_ViewBakeriesStateCopyWithImpl<_$_ViewBakeriesState>(
           this, _$identity);
 }
 
-abstract class _ViewProductsState extends ViewProductsState {
-  const factory _ViewProductsState(
+abstract class _ViewBakeriesState extends ViewBakeriesState {
+  const factory _ViewBakeriesState(
           {final String message,
-          final List<Product>? products,
-          required final ViewProductsStatus viewProductStatus}) =
-      _$_ViewProductsState;
-  const _ViewProductsState._() : super._();
+          final List<Bakery>? bakeries,
+          required final ViewBakeriesStatus viewBakeriesStatus}) =
+      _$_ViewBakeriesState;
+  const _ViewBakeriesState._() : super._();
 
   @override
   String get message;
   @override
-  List<Product>? get products;
+  List<Bakery>? get bakeries;
   @override
-  ViewProductsStatus get viewProductStatus;
+  ViewBakeriesStatus get viewBakeriesStatus;
   @override
   @JsonKey(ignore: true)
-  _$$_ViewProductsStateCopyWith<_$_ViewProductsState> get copyWith =>
+  _$$_ViewBakeriesStateCopyWith<_$_ViewBakeriesState> get copyWith =>
       throw _privateConstructorUsedError;
 }

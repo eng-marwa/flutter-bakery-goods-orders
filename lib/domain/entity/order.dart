@@ -8,9 +8,10 @@ class Order extends Equatable{
   List<Item>? items;
   double? price;
   String? status;
+  double? rate=0.0;
   String? paymentMethod;
   @override
   List<Object?> get props => [orderId, orderDate, items,price,status,paymentMethod];
 
-  Order({required this.orderId, required this.orderDate, required this.items, required this.price, required this.status, required this.paymentMethod});
+  Order({required this.orderId, required this.orderDate, required this.items, required this.price, required this.status,this.rate, required this.paymentMethod});
 }

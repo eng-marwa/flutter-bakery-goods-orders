@@ -12,7 +12,7 @@ BakeryResponse _$BakeryResponseFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
       lon: (json['lon'] as num).toDouble(),
-      rate: json['rate'] as int?,
+      rate: (json['rate'] as num?)?.toDouble(),
       type: json['type'] as String?,
       products: (json['products'] as List<dynamic>)
           .map((e) => ProductResponse.fromJson(e as Map<String, dynamic>))

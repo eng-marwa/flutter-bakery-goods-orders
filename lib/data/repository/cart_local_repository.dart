@@ -38,8 +38,13 @@ class BasCartLocalRepositoryImp extends BasCartLocalRepository {
 
   @override
   Either<Failure, int> removeAllItems()  {
-    try {
-       _box.deleteFromDisk();
+    List<int> keys = [];
+    _box.values.forEach((element) {
+      keys.add(element.productId!);
+    });
+      try {
+
+       _box.deleteAll(keys);
       return Right(1);
     } on HiveError catch (e) {
       return Left(Failure(code: 422, message: e.message));

@@ -1,66 +1,100 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hnflutter_challenge/domain/entity/product.dart';
-import 'package:hnflutter_challenge/presentation/cart/cart_viewmodel/cart_event.dart';
+import 'package:hnflutter_challenge/domain/entity/Bakery.dart';
+import 'package:hnflutter_challenge/presentation/cart/cart_viewmodel/cart_bloc.dart';
 import 'package:hnflutter_challenge/presentation/home/home_viewmodel/home_bloc.dart';
 import 'package:hnflutter_challenge/presentation/home/home_viewmodel/home_event.dart';
 import 'package:hnflutter_challenge/presentation/home/home_viewmodel/home_state.dart';
-import 'package:hnflutter_challenge/presentation/home/view_product_status.dart';
+import 'package:hnflutter_challenge/presentation/home/home_viewmodel/view_bakeries_status.dart';
+import 'package:hnflutter_challenge/presentation/home/profile_viewmodel/profile_bloc.dart';
+import 'package:hnflutter_challenge/presentation/home/profile_viewmodel/profile_event.dart';
+import 'package:hnflutter_challenge/presentation/home/profile_viewmodel/profile_state.dart';
+import 'package:hnflutter_challenge/presentation/home/profile_viewmodel/view_profile_status.dart'
+    as profile;
 
-import '../../di/module.dart';
-import '../cart/cart_viewmodel/cart_bloc.dart';
+import '../../resources/route_manager.dart';
 import '../widgets/show_snackbar.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     String? email = ModalRoute.of(context)!.settings.arguments as String?;
     return Scaffold(
-        body:MultiBlocProvider(providers: [
-          BlocProvider<ViewProductsBloc>(create: (context) => instance<ViewProductsBloc>()..add(FetchProducts())),
-         // BlocProvider<CartBloc>(create: (context) => instance<CartBloc>()..add(AddItemToCartEvent(itemId))),
-        ],
-
-      child: SafeArea(
+      body: SafeArea(
           child: SingleChildScrollView(
-        child:
-            Column(children: [_greetingTextView(email), _productsGridView()]),
-      )),
-    ));
-  }
-
-  Widget _productsGridView() {
-    return BlocBuilder<ViewProductsBloc, ViewProductsState>(
-        builder: (context, state) {
-      final viewProductStatus = state.viewProductStatus;
-      if (viewProductStatus is Failed) {
-        return Center(child: Text(viewProductStatus.failureMessage));
-      } else if (viewProductStatus is Success) {
-        List<Product> products = state.products!;
-        return GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemCount: products.length,
-            itemBuilder: (context, index) => Card(
-                    child: Column(children: [
-                  Image.network("https://raw.githubusercontent.com/filippella/Dagger-Rx-Database-MVP/master/cakes/lemoncheese_cake.jpg", width:120),
-                  Text('${products[index].name}'),
-                  OutlinedButton(
+        child: Column(children: [
+          _greetingTextView(email),
+          // Divider(),
+          Visibility(visible: email==null,child:Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(onPressed: () {
+                Navigator.pushNamed(context, Routes.cartRoute);
+              }, icon: Icon(Icons.shopping_cart)),
+              IconButton(onPressed: () {
+                Navigator.pushNamed(context, Routes.ordersRoute);
+              }, icon: Icon(Icons.shopping_bag)),
+            ],
+          )),
+          Divider(),
+          const Text('Filter By Type:'),
+          Row(
+            children: [
+              Expanded(
+                  child: ElevatedButton(
                       onPressed: () {
-
-                      }, child: const Text('Add To Cart'))
-                ])));
-      } else {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-    });
+                        BlocProvider.of<ViewBakeriesBloc>(context,
+                                listen: false)
+                            .add(const FetchBakeries());
+                      },
+                      child: const Text('All'))),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<ViewBakeriesBloc>(context,
+                                listen: false)
+                            .add(const FilterByType('cake'));
+                      },
+                      child: const Text('Cake'))),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<ViewBakeriesBloc>(context,
+                                listen: false)
+                            .add(const FilterByType('bread'));
+                      },
+                      child: const Text('Bread'))),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<ViewBakeriesBloc>(context,
+                                listen: false)
+                            .add(const FilterByType('pie'));
+                      },
+                      child: const Text('Pie'))),
+            ],
+          ),
+          ElevatedButton(
+              onPressed: () {
+                BlocProvider.of<ViewBakeriesBloc>(context, listen: false)
+                    .add(const FilterByProximity());
+              },
+              child: const Text('Filter By Proximity')),
+          _bakeriesGridView(email)
+        ]),
+      )),
+    );
   }
 
   Widget _greetingTextView(String? email) {
@@ -75,19 +109,69 @@ class HomeView extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               )),
           Expanded(
-            flex: 1,
-            child: TextButton(
-              onPressed: () {
-
-              },
-              child: const Text(
-                'Log Out',
-                textAlign: TextAlign.end,
-              ),
-            ),
-          )
+              flex: 1,
+              child: Visibility(
+                visible: email != null,
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Log Out',
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ))
         ],
       ),
     );
+  }
+
+  _bakeriesGridView(String? email) {
+    return BlocListener<ViewProfileBloc, ViewProfileState>(
+        listener: (context, state) {
+      final status = state.viewProfileStatus;
+      if (status is profile.Failed) {
+        ShowSnackBar(context, status.failureMessage);
+      } else if (status is profile.Success) {
+        Navigator.pushNamed(context, Routes.detailsRoute,
+            arguments: [state.bakery, email]);
+      }
+    }, child: BlocBuilder<ViewBakeriesBloc, ViewBakeriesState>(
+            builder: (context, state) {
+      final viewBakeriesStatus = state.viewBakeriesStatus;
+      if (viewBakeriesStatus is Failed) {
+        return Center(child: Text(viewBakeriesStatus.failureMessage));
+      } else if (viewBakeriesStatus is Success) {
+        List<Bakery> bakeries = state.bakeries!;
+        return GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2),
+            itemCount: bakeries.length,
+            itemBuilder: (context, index) => InkWell(
+                  onTap: () =>
+                      BlocProvider.of<ViewProfileBloc>(context, listen: false)
+                          .add(ViewProfile(bakeries[index].id)),
+                  child: Card(
+                      child: Column(children: [
+                    Image.network('${bakeries[index].logo}', width: 120),
+                    Text('${bakeries[index].name}'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Text('${bakeries[index].rate}'),
+                      ],
+                    )
+                  ])),
+                ));
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    }));
   }
 }

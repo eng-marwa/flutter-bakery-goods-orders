@@ -18,7 +18,7 @@ class BakeryResponse {
   final String? name;
   final double? lat;
   final double lon;
-  final int? rate;
+  final double? rate;
   final String? type;
   final List<ProductResponse> products;
   final String? logo;

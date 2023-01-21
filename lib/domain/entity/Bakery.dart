@@ -13,7 +13,7 @@ class Bakery {
   String? name;
   double? lat;
   double? lon;
-  int? rate;
+  double? rate;
   String? type;
   String? logo;
 

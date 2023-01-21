@@ -2,9 +2,9 @@ abstract class CartStatus {
   const CartStatus();
 }
 
-class Loading extends CartStatus {}
+class LoadingStatus extends CartStatus {}
 
-class Success extends CartStatus {}
+class SuccessStatus extends CartStatus {}
 
 class ItemDeleted extends CartStatus {}
 
@@ -12,8 +12,8 @@ class ItemAdded extends CartStatus {}
 
 class NoItems extends CartStatus {}
 
-class Failed extends CartStatus {
+class FailedStatus extends CartStatus {
   final String failureMessage;
 
-  Failed(this.failureMessage);
+  FailedStatus(this.failureMessage);
 }

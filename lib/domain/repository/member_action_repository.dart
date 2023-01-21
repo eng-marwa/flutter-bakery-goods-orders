@@ -1,32 +1,36 @@
-import 'package:hnflutter_challenge/domain/entity/order.dart';
+import 'package:dartz/dartz.dart';
+import 'package:hnflutter_challenge/domain/entity/order.dart' as order;
 
+import '../../app/failure.dart';
 import '../../data/repository/member_action_remote_repository.dart';
+import '../entity/item.dart';
 import 'cart_repository.dart';
 
 abstract class MemberActionsRepository {
   BaseMemberActionsRemoteRepository _baseMemberActionsRemoteRepository;
   CartRepository _cartRepository;
 
-  MemberActionsRepository(this._baseMemberActionsRemoteRepository,
-      this._cartRepository);
+  MemberActionsRepository(
+      this._baseMemberActionsRemoteRepository, this._cartRepository);
 
-  viewMemberOrders();
+  Future<Either<Failure, List<order.Order>>> viewMemberOrders();
 
-  rateOrder(int? orderId, int? rate);
+  Future<Either<Failure, List<order.Order>>> rateOrder(
+      int? orderId, double? rate);
 
-  cancelOrder(orderId);
+  Future<Either<Failure, List<order.Order>>> cancelOrder(orderId);
 
   markedAsCollected(int itemId);
 
-  makeOrder(Order order);
+  makeOrder();
 }
 
 class MemberActionsRepositoryImp extends MemberActionsRepository {
-  MemberActionsRepositoryImp(super.baseMemberActionsRemoteRepository,
-      super._cartRepository);
+  MemberActionsRepositoryImp(
+      super.baseMemberActionsRemoteRepository, super._cartRepository);
 
   @override
-  cancelOrder(orderId) {
+  Future<Either<Failure, List<order.Order>>> cancelOrder(orderId) {
     return _baseMemberActionsRemoteRepository.cancelOrder(orderId);
   }
 
@@ -36,17 +40,31 @@ class MemberActionsRepositoryImp extends MemberActionsRepository {
   }
 
   @override
-  rateOrder(int? orderId, int? rate) {
+  Future<Either<Failure, List<order.Order>>> rateOrder(
+      int? orderId, double? rate) {
     return _baseMemberActionsRemoteRepository.rateOrder(orderId, rate);
   }
 
   @override
-  viewMemberOrders() {
+  Future<Either<Failure, List<order.Order>>> viewMemberOrders() {
     return _baseMemberActionsRemoteRepository.viewMemberOrders();
   }
 
   @override
-  makeOrder(Order order) {
-    return _baseMemberActionsRemoteRepository.makeOrder(order);
+  Future<Either<Failure, bool>> makeOrder() async {
+    int lastOrderId = 0;
+    List<Item> items = [];
+
+    _cartRepository.viewAllItems().fold((l) => null, (r){
+       items = r.value.values.toList();
+    });
+    final viewMemberOrders = await _baseMemberActionsRemoteRepository.viewMemberOrders();
+    viewMemberOrders.fold((l) => null, (r) {
+      lastOrderId = r[r.length-1].orderId!;
+    });
+    var dateTime = DateTime.now();
+    String orderDate = '${dateTime.day}/${dateTime.month}/${dateTime.year}';
+    var newOrder = order.Order(orderId: lastOrderId, orderDate: orderDate, items: items, price: 1200, status: 'Active', paymentMethod: 'Cash');
+    return _baseMemberActionsRemoteRepository.makeOrder(newOrder);
   }
 }

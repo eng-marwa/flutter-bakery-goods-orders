@@ -16,10 +16,11 @@ class ItemAdapter extends TypeAdapter<Item> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Item()
-      ..productId = fields[0] as int?
-      ..productName = fields[1] as String?
-      ..quantity = fields[2] as int?;
+    return Item(
+      productId: fields[0] as int?,
+      productName: fields[1] as String?,
+      quantity: fields[2] as int?,
+    );
   }
 
   @override
@@ -44,3 +45,19 @@ class ItemAdapter extends TypeAdapter<Item> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Item _$ItemFromJson(Map<String, dynamic> json) => Item(
+      productId: json['productId'] as int?,
+      productName: json['productName'] as String?,
+      quantity: json['quantity'] as int?,
+    );
+
+Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
+      'productId': instance.productId,
+      'productName': instance.productName,
+      'quantity': instance.quantity,
+    };

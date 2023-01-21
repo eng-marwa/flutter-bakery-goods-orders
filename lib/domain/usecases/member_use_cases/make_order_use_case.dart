@@ -12,6 +12,6 @@ class MakeOrderUseCase implements BaseUseCase<order.Order, void> {
 
   @override
   Future<Either<Failure, bool>> execute(input) async {
-    return await _memberActionsRepository.makeOrder(input!);
+    return await _memberActionsRepository.makeOrder();
   }
 }
